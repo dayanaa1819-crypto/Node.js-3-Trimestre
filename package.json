@@ -1,0 +1,24 @@
+{
+  "name": "node.js-3-trimestre",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dayanaa1819-crypto/Node.js-3-Trimestre.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dayanaa1819-crypto/Node.js-3-Trimestre/issues"
+  },
+  "homepage": "https://github.com/dayanaa1819-crypto/Node.js-3-Trimestre#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
