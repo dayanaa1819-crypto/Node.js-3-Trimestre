@@ -44,3 +44,15 @@ app.get("/saludo/:nombre", (req, res) => {
     }
     res.send(`Hola, ${nombre}, bienvenido`);
 });
+
+/*Ejercicio 2*/
+app.get("/productos/:nombre", (req, res) => {
+    const nombreProducto = req.params.nombre;
+    res.json({
+        "id": 101,
+        "nombre": nombreProducto,
+        "cantidadStock": 45,
+        "precioUnitario": 29.99,
+        "categoria": "Electrónica"
+    });
+});
