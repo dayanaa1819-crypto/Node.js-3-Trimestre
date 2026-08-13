@@ -80,3 +80,15 @@ app.get("/usuarios/:id/posts", (req, res) => {
     res.json({ "usuario": idUsuario, "orden": orden, "publicaciones": posts });
 });
 
+/*Ejercicio 5*/
+app.get("/usuarios/:id/:posts_id/comentarios", (req, res) => {
+    const idUsuario = req.params.id;
+    const idPost = req.params.posts_id;
+    const orden = req.query.orden || "asc";
+    let comentarios = [
+        { "id": 101, "autor": "Carlos", "texto": "Excelente post" },
+        { "id": 102, "autor": "Ana", "texto": "Muy interesante" }
+    ];
+    if (orden === "desc") comentarios.reverse();
+    res.json({ "usuario": idUsuario, "post": idPost, "orden": orden, "comentarios": comentarios });
+});
