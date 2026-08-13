@@ -39,81 +39,8 @@ app.listen(port, () => {
 
 app.get("/saludo/:nombre", (req, res) => {
     const nombre = req.params.nombre;
-
     if (nombre.length < 3) {
         return res.status(400).send("El nombre debe tener al menos 3 caracteres.");
     }
-
     res.send(`Hola, ${nombre}, bienvenido`);
-});
-
-/*Ejercicio 2*/
-app.get("/productos/:nombre", (req, res) => {
-    const nombreProducto = req.params.nombre;
-
-    res.json({
-        "id": 101,
-        "nombre": nombreProducto,
-        "cantidadStock": 45,
-        "precioUnitario": 29.99,
-        "categoria": "Electrónica"
-    });
-});
-
-/*Ejercicio 3*/
-app.get("/productos/:categoria/:id", (req, res) => {
-    const categoria = req.params.categoria;
-    const idProducto = req.params.id;
-
-    res.json({
-        "producto": idProducto,
-        "categoria": categoria,
-        "servidor": "Servidor Sena-Express"
-    });
-});
-
-/*Ejercicio 4*/
-
-app.get("/usuarios/:id/posts", (req, res) => {
-    const idUsuario = req.params.id;
-    const orden = req.query.orden || "asc";
-
-    let posts = [
-        { "id": 1, "titulo": "Primer post" },
-        { "id": 2, "titulo": "Segundo post" },
-        { "id": 3, "titulo": "Tercer post" }
-    ];
-
-    if (orden === "desc") {
-        posts.reverse();
-    }
-
-    res.json({
-        "usuario": idUsuario,
-        "orden": orden,
-        "publicaciones": posts
-    });
-});
-/*Ejercicio 5*/
-app.get("/usuarios/:id/:posts_id/comentarios", (req, res) => {
-    const idUsuario = req.params.id;
-    const idPost = req.params.posts_id;
-    const orden = req.query.orden || "asc";
-
-    let comentarios = [
-        { "id": 101, "autor": "Carlos", "texto": "Excelente post" },
-        { "id": 102, "autor": "Ana", "texto": "Muy interesante" },
-        { "id": 103, "autor": "Luis", "texto": "Muchas gracias" }
-    ];
-
-    if (orden === "desc") {
-        comentarios.reverse();
-    }
-
-    res.json({
-        "usuario": idUsuario,
-        "post": idPost,
-        "orden": orden,
-        "comentarios": comentarios
-    });
 });
