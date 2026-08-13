@@ -56,3 +56,14 @@ app.get("/productos/:nombre", (req, res) => {
         "categoria": "Electrónica"
     });
 });
+
+/*Ejercicio 3*/
+app.get("/productos/:categoria/:id", (req, res) => {
+    const categoria = req.params.categoria;
+    const idProducto = req.params.id;
+    res.json({
+        "producto": idProducto,
+        "categoria": categoria,
+        "servidor": "Servidor Sena-Express"
+    });
+});
