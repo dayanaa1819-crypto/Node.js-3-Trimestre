@@ -34,3 +34,15 @@ app.get("/ruta4", (req, res) => {
 app.listen(port, () => {
     console.log(`SERVIDOR: http://localhost:${port}`);
 });
+/*Ejercicios*/
+/*Ejercicio1*/
+
+app.get("/saludo/:nombre", (req, res) => {
+    const nombre = req.params.nombre;
+
+    if (nombre.length < 3) {
+        return res.status(400).send("El nombre debe tener al menos 3 caracteres.");
+    }
+
+    res.send(`Hola, ${nombre}, bienvenido`);
+});
