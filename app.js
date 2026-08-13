@@ -67,3 +67,16 @@ app.get("/productos/:categoria/:id", (req, res) => {
         "servidor": "Servidor Sena-Express"
     });
 });
+
+/*Ejercicio 4*/
+app.get("/usuarios/:id/posts", (req, res) => {
+    const idUsuario = req.params.id;
+    const orden = req.query.orden || "asc";
+    let posts = [
+        { "id": 1, "titulo": "Primer post" },
+        { "id": 2, "titulo": "Segundo post" }
+    ];
+    if (orden === "desc") posts.reverse();
+    res.json({ "usuario": idUsuario, "orden": orden, "publicaciones": posts });
+});
+
