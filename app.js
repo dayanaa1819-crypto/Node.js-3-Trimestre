@@ -92,3 +92,17 @@ app.get("/usuarios/:id/:posts_id/comentarios", (req, res) => {
     if (orden === "desc") comentarios.reverse();
     res.json({ "usuario": idUsuario, "post": idPost, "orden": orden, "comentarios": comentarios });
 });
+
+
+/*Ejercicio 6*/
+const libros = [
+    { "isbn": "978-0132350884", "titulo": "Clean Code", "autor": "Robert C. Martin" },
+    { "isbn": "978-0201633610", "titulo": "Design Patterns", "autor": "Erich Gamma" }
+];
+
+app.get("/libros/:isbn", (req, res) => {
+    const isbnBuscado = req.params.isbn;
+    const libroEncontrado = libros.find(libro => libro.isbn === isbnBuscado);
+    if (!libroEncontrado) return res.status(404).send("Libro no encontrado");
+    res.json(libroEncontrado);
+});
