@@ -14,5 +14,12 @@
     "correo": "juan1818@gmail.co",
     "imagen": "/imagenes/mifoto.pg",
     "clave": "xxx"
+  },
+  {
+    "id": "3",
+    "nombre": "ana",
+    "correo": "ana@example.com",
+    "clave": "xxx",
+    "imagen": "/misImagenes/1788551644859.png"
   }
 ]

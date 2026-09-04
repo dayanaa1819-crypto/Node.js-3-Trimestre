@@ -13,6 +13,21 @@ const ruta = require("path");
 
 const rutaArchivo = ruta.join(__dirname, "datos.json");
 
+//libreria para subir archivos
+const multer = require("multer");
+//configurar el almacenamiento de archivos
+const almacenamiento = multer.diskStorage({
+    destination: (req, file, cb) => {
+    cb(null, "misImagenes/")
+    },
+    filename: (req, file, cb) => {
+        const extensionn = ruta.extname(file.originalname);
+        cb(null, `${Date.now()}${extensionn}`)
+    }
+    })
+
+const cargar = multer({ storage: almacenamiento });
+
 app.get("/", (req, res) => { 
     res.send("Aprendices ficha 3407186"); 
 });
@@ -36,9 +51,12 @@ app.get("/api/aprendices/:id", (req, res) => {
 });
 
 // ENDPOINT PARA CREAR APRENDICES (Aquí es donde se guarda en el archivo)
-app.post("/api/aprendices", (req, res) => {
-    const datosAprendiz = req.body; // Extraemos los datos enviados
+app.post("/api/aprendices", cargar.single("imagen"), (req, res) => {
+    const datosAprendiz = req.body; 
+    //agregar la ruta de la imagen
+    datosAprendiz.imagen = req.file? `/misImagenes/${req.file.filename}` : "sin imagen"
 
+//Leer archivo
     sistemaArchivo.readFile(rutaArchivo, "utf-8", (error, datos) => {
         if (error) {
             return res.status(500).json({ Error: "No se puede leer archivo" });
