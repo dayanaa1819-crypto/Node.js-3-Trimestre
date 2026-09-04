@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nombre": "Dayana",
+    "correo": "dayana1818@gmail.co",
+    "imagen": "/imagenes/mifoto.pg",
+    "clave": "abc123"
+  },
+  {},
+  {},
+  {
+    "id": 1,
+    "nombre": "juan",
+    "correo": "juan1818@gmail.co",
+    "imagen": "/imagenes/mifoto.pg",
+    "clave": "xxx"
+  }
+]

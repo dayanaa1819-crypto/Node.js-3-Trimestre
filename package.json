@@ -1,10 +1,11 @@
 {
-  "name": "intro-express-js-maira_ramirez",
+  "name": "intro-express-js-dayana_avila",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "node --watch app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

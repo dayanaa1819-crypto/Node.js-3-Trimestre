@@ -3,66 +3,94 @@ const app = express();
 require('dotenv').config();
 const port = process.env.PUERTO || 3000; 
 
-//middleware para parsear datos del boddy
-app.use(express.json())
-app.use (express.urlencoded({extended:true}))
+// Middleware para parsear datos del body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Leer archivo
+const sistemaArchivo = require("fs");
+const ruta = require("path");
+
+const rutaArchivo = ruta.join(__dirname, "datos.json");
 
 app.get("/", (req, res) => { 
-    res.send("Aprendicez ficha 3407186"); 
+    res.send("Aprendices ficha 3407186"); 
 });
 
-//EMPOINT PARA LISTAR APRENDICES 
-app.get ("/api/aprendices", (req, res) => {
-    res.status (200).json({
-        "mensaje": "Lista de aprendices"
-    })
-})
+// ENDPOINT PARA LISTAR APRENDICES (Solo lee el archivo)
+app.get("/api/aprendices", (req, res) => {
+    sistemaArchivo.readFile(rutaArchivo, "utf-8", (error, datos) => {
+        if (error) {
+            return res.status(500).json({ Error: "No se puede leer archivo, o BD" });
+        }
+        const listaAprendices = JSON.parse(datos);
+        res.status(200).json({ "mensaje": listaAprendices });
+    });
+}); 
 
-//EMPOINT PARA LISTAR UN APRENDIZ 
-app.get ("/api/aprendices/:id", (req, res) => {
-    res.status (200).json({
-        "mensaje": "Lista 1 aprendiZ"
-    })
-})
+// ENDPOINT PARA LISTAR UN APRENDIZ 
+app.get("/api/aprendices/:id", (req, res) => {
+    res.status(200).json({
+        "mensaje": "Lista 1 aprendiz"
+    });
+});
 
-//EMPOINT PARA CREAR APRENDICES 
-app.post ("/api/aprendices", (req, res)=>{
-    res.status(201).json ({
-        "mensaje": "se creo aprendiz"
-    })
-})
+// ENDPOINT PARA CREAR APRENDICES (Aquí es donde se guarda en el archivo)
+app.post("/api/aprendices", (req, res) => {
+    const datosAprendiz = req.body; // Extraemos los datos enviados
 
-//EMPINT PARA EDITAR APRENDIZ
-app.put ("/api/aprendices/:id", (req, res)=>{
+    sistemaArchivo.readFile(rutaArchivo, "utf-8", (error, datos) => {
+        if (error) {
+            return res.status(500).json({ Error: "No se puede leer archivo" });
+        }
+
+        const listaAprendices = JSON.parse(datos);
+        listaAprendices.push(datosAprendiz); // Agregamos el nuevo aprendiz
+
+        // Guardamos en el archivo JSON
+        sistemaArchivo.writeFile(rutaArchivo, JSON.stringify(listaAprendices, null, 2), (error) => {
+            if (error) {
+                return res.status(500).json({ Error: "No se puede escribir en el archivo" });
+            }
+            res.status(201).json({ 
+                "mensaje": "Aprendiz creado", 
+                "Datos Aprendiz": datosAprendiz 
+            });
+        });
+    });
+});
+
+// ENDPOINT PARA EDITAR APRENDIZ
+app.put("/api/aprendices/:id", (req, res) => {
     res.status(200).json({
         "mensaje": "editar aprendices"
-    })
-})
+    });
+});
 
-//EMPOINT PARA ELIMINAR APRENDIZ
-app.delete ("/api/aprendices/:id", (req, res)=>{
+// ENDPOINT PARA ELIMINAR APRENDIZ
+app.delete("/api/aprendices/:id", (req, res) => {
     res.status(200).json({
         "mensaje": "eliminar aprendices"
-    })
-})
+    });
+});
 
-app.post ("/rutaJson", (req, res) =>{
-    const todosDatos = req.body
-    const edad = req.body.edad2
-    if (edad=>18) {
-        res.json({mensaje: "es mayor"})
-    } else {
-        res.json({mensaje:"es menor"})
-    }
-    res.json ({datosJson: todosDatos })
-})
+app.post("/rutaJson", (req, res) => {
+    const todosDatos = req.body;
+    const edad = req.body.edad2;
+    const esMayor = edad >= 18 ? "es mayor" : "es menor";
 
-app.post ("/rutaFormulario", (req, res) =>{
-    const todosDatos = req.body
-    const programa = req.body.programa
-    res.json ({Todosdatos:todosDatos, MiPrograma: programa})
-})
+    res.json({
+        mensaje: esMayor,
+        datosJson: todosDatos
+    });
+});
 
-app.listen(port, () => { 
-    console.log( `SERVIDOR: http://localhost:${port}`); 
-}); 
+app.post("/rutaFormulario", (req, res) => {
+    const todosDatos = req.body;
+    const programa = req.body.programa;
+    res.json({ Todosdatos: todosDatos, MiPrograma: programa });
+});
+
+app.listen(port, () => {
+    console.log(`SERVIDOR: http://localhost:${port}`);
+});
