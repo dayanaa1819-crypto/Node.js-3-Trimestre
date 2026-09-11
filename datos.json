@@ -21,5 +21,38 @@
     "correo": "ana@example.com",
     "clave": "xxx",
     "imagen": "/misImagenes/1788551644859.png"
+  },
+  {
+    "imagen": "sin imagen"
+  },
+  {
+    "nombre": "Dayana",
+    "edad": 17,
+    "correo": "dayana1010@gmail.com",
+    "imagen": "sin imagen"
+  },
+  {
+    "nombre": "Dayana",
+    "edad": 17,
+    "correo": "dayana1010@gmail.com",
+    "imagen": "sin imagen"
+  },
+  {
+    "nombre": "Dayana",
+    "edad": 17,
+    "correo": "dayana1010@gmail.com",
+    "imagen": "sin imagen"
+  },
+  {
+    "nombre": "Dayana",
+    "edad": 17,
+    "correo": "dayana1010@gmail.com",
+    "imagen": "sin imagen"
+  },
+  {
+    "nombre": "Dayana",
+    "edad": 17,
+    "correo": "dayana1010@gmail.com",
+    "imagen": "sin imagen"
   }
 ]
