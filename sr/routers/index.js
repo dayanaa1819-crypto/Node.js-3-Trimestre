@@ -2,7 +2,7 @@
 const {Router} = require("express")
 const enrutador = Router()
 const pruebaRouter = require("./pruebaRouter")
-const usuariosRouter = require("./pruebaRouter")
+const usuariosRouter = require("./usuarioRouter")
 
 enrutador.use("/rutaPrueba", pruebaRouter)
 //ejemplo
