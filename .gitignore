@@ -142,3 +142,4 @@ Puerto .tern
 .svelte-kit
 
 # Fin de https://www.toptal.com/developers/gitignore/api/node
+/generated/prisma

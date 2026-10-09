@@ -1,9 +1,11 @@
 //ruta de solo prueba
 const {Router} = require("express")
 const enrutador = Router()
-const mostrarRutaUsuario = require("../controllers/usuarioPruebaController")
+const{mostrarRutaUsuario, registrarController, loginController} = require("../controllers/usuarioPruebaController")
 //funcion (req,res) debe ir en el controlador 
-enrutador.get("/rutaUsuario",mostrarRutaUsuario)
+enrutador.get("/listado",mostrarRutaUsuario)
 
+enrutador.get("/registrar",registrarController)
+enrutador.get("/login",loginController)
 
 module.exports = enrutador
