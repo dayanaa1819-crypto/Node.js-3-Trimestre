@@ -1,14 +1,14 @@
 //funciones asincronas,y capturar errores try catch
 const listarUsuarios = require("../services/usuariosService")
 const mostrarRutaUsuario = async(req, res)=>{
-   try{
+try{
     const usuarios = await listarUsuarios()
     res.json(usuarios)
 
 
-   }catch (error){
+}catch (error){
     res.status(500).json({mensaje: "Error al comunicarse con la base de datos.",Error:error.message})
-   }
+}
 
 }
 
